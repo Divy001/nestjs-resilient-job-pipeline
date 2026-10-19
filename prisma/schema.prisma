@@ -1,0 +1,37 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model JobRecord {
+  id              String      @id @default(uuid())
+  tenantId        String      @map("tenant_id")
+  idempotencyKey  String      @unique @map("idempotency_key")
+  jobType         String      @map("job_type")
+  payload         Json
+  result          Json?
+  status          JobStatus   @default(PENDING)
+  attempts        Int         @default(0)
+  maxAttempts     Int         @default(3) @map("max_attempts")
+  errorMessage    String?     @map("error_message")
+  
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+  processedAt     DateTime?   @map("processed_at")
+
+  @@index([tenantId, status])
+  @@index([createdAt])
+
+  @@map("job_records")
+}
