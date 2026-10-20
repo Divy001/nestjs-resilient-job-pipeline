@@ -1,4 +1,4 @@
-# ⚡ NestJS Resilient Job Pipeline
+# NestJS Resilient Job Pipeline
 
 A production-grade asynchronous job processing and idempotent webhook pipeline built with **NestJS**, **BullMQ**, **PostgreSQL (Prisma)**, and **Redis**.
 
@@ -6,7 +6,7 @@ Designed for high-throughput B2B SaaS workflows (bulk report generation, third-p
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 Incoming Webhook / API Request
@@ -43,7 +43,7 @@ Incoming Webhook / API Request
 
 ---
 
-## 🛡️ Key Architectural Highlights
+## Key Architectural Highlights
 
 ### 1. Atomic Idempotency via Redis SETNX
 Duplicate webhooks from payment gateways or client retries are blocked in memory before touching PostgreSQL:
@@ -63,7 +63,7 @@ In distributed systems, writing to a relational database and a message queue can
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Runtime & Framework:** Node.js, NestJS, TypeScript
 - **Job Queue:** BullMQ, Redis 7 (Alpine)
@@ -72,7 +72,7 @@ In distributed systems, writing to a relational database and a message queue can
 
 ---
 
-## 🚀 Quickstart (1-Command Run)
+## Quickstart (1-Command Run)
 
 ### 1. Clone & Configure
 ```bash
@@ -100,7 +100,7 @@ API runs on `http://localhost:3000`.
 
 ---
 
-## 🧪 Testing the Pipeline with cURL
+## Testing the Pipeline with cURL
 
 ### 1. Ingest an Async Job (Fast HTTP 202 Accepted)
 ```bash
@@ -184,7 +184,7 @@ Watch terminal logs to observe the worker attempt 3 retries at 2-second and 4-se
 
 ---
 
-## 📊 Performance & Safeguards Summary
+## Performance & Safeguards Summary
 
 | Feature | Production Benefit | Implementation |
 |---|---|---|
